@@ -17,12 +17,11 @@ MyVector(10, ResizeStrategy::Multiplicative, 2), _queueSize(0), _begInd(0){}
 QueueVector::QueueVector(const QueueVector& copyVector)
 :MyVector(copyVector), _queueSize(copyVector._queueSize),_begInd(copyVector._begInd) {}
 
-QueueVector& QueueVector::operator=
-        (const QueueVector& copyVector){
+QueueVector& QueueVector::operator=(const QueueVector& copyVector){
     if(this == &copyVector){
         return *this;
     }
-    *(dynamic_cast<MyVector*>(this)) = copyVector;
+    MyVector::operator=(copyVector);
     _queueSize = copyVector._queueSize;
     _begInd = copyVector._begInd;
     return *this;
