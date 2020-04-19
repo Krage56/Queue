@@ -13,21 +13,17 @@ QueueList& QueueList::operator=
     if(this == &copyList){
         return *this;
     }
-    *(dynamic_cast<LinkedList*>(this)) = copyList;
+    LinkedList::operator=(copyList);
     return *this;
 }
 
-QueueList::QueueList(QueueList &&moveList) noexcept {
-    delete(dynamic_cast<LinkedList*>(this));
-    *(dynamic_cast<LinkedList*>(this)) = std::move(moveList);
-}
+QueueList::QueueList(QueueList &&moveList) noexcept:LinkedList(std::move(moveList)){}
 
 QueueList &QueueList::operator=(QueueList &&moveList) noexcept {
     if(this == &moveList){
         return *this;
     }
-    delete(dynamic_cast<LinkedList*>(this));
-    *(dynamic_cast<LinkedList*>(this)) = std::move(moveList);
+    LinkedList::operator=(std::move(moveList));
     return *this;
 }
 
@@ -48,7 +44,7 @@ bool QueueList::isEmpty() const {
 }
 
 size_t QueueList::size() const {
-    return this->LinkedList::size();
+    return LinkedList::size();
 }
 
 

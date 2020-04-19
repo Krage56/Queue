@@ -1,15 +1,7 @@
-//
-// Created by krage56 on 18.04.2020.
-//
 
 #include "QueueVector.h"
-//
-// Created by krage56 on 18.04.2020.
-//
-
 #include <algorithm>
-#include <iostream>
-#include "QueueVector.h"
+
 
 QueueVector::QueueVector():
 MyVector(10, ResizeStrategy::Multiplicative, 2), _queueSize(0), _begInd(0){}

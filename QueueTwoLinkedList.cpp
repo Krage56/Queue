@@ -13,21 +13,17 @@ QueueTwoLinkedList& QueueTwoLinkedList::operator=
     if(this == &copyList){
         return *this;
     }
-    *(dynamic_cast<TwoLinkedList*>(this)) = copyList;
+    TwoLinkedList::operator=(copyList);
     return *this;
 }
 
-QueueTwoLinkedList::QueueTwoLinkedList(QueueTwoLinkedList &&moveList) noexcept {
-    delete(dynamic_cast<TwoLinkedList*>(this));
-    *(dynamic_cast<TwoLinkedList*>(this)) = std::move(moveList);
-}
+QueueTwoLinkedList::QueueTwoLinkedList(QueueTwoLinkedList &&moveList) noexcept:TwoLinkedList(std::move(moveList)){}
 
 QueueTwoLinkedList &QueueTwoLinkedList::operator=(QueueTwoLinkedList &&moveList) noexcept {
     if(this == &moveList){
         return *this;
     }
-    delete(dynamic_cast<TwoLinkedList*>(this));
-    *(dynamic_cast<TwoLinkedList*>(this)) = std::move(moveList);
+    TwoLinkedList::operator=(std::move(moveList));
     return *this;
 }
 
@@ -48,7 +44,7 @@ bool QueueTwoLinkedList::isEmpty() const {
 }
 
 size_t QueueTwoLinkedList::size() const {
-    return this->TwoLinkedList::size();
+    return TwoLinkedList::size();
 }
 
 
